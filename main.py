@@ -8,15 +8,17 @@ import geocoder
 # Get current location
 g = geocoder.ip('me')
 lat, lon = g.latlng
-
-targetnum = "+917877756421"
+number =["0000000000"] #add number to send msg
+targetnum = number
 msg = f"🚨 EMERGENCY ALERT \n🚨This is an SOS message from Vikas\n📍 Location: {lat,lon}\nPlease help immediately!"
 
 cancel_flag = False
 
 def send_sos():
     try:
-        pywhatkit.sendwhatmsg_instantly(targetnum, msg, wait_time=15, tab_close=True)
+        for targetnum in number:
+            pywhatkit.sendwhatmsg_instantly(targetnum, msg, wait_time=30, tab_close=True)
+
         pygame.mixer.init()
         pygame.mixer.music.load("siren.mp3")
         pygame.mixer.music.play()
